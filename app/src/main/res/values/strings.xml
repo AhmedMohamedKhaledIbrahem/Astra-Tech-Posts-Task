@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Astra Tech Posts Task</string>
+    <string name="error_bad_request">Invalid request. Please try again.</string>
+    <string name="error_unauthorized">You are not authorized. Please log in again.</string>
+    <string name="error_forbidden">You don’t have permission to access this feature.</string>
+    <string name="error_not_found">The requested resource was not found.</string>
+    <string name="error_payload_too_large">The request is too large. Try again with smaller data.</string>
+    <string name="error_server_error">Something went wrong on the server. Please try later.</string>
+    <string name="error_bad_gateway">Server communication error. Try again later.</string>
+    <string name="error_service_unavailable">Service is temporarily unavailable. Please try later.</string>
+    <string name="error_gateway_timeout">Connection timed out. Please try again.</string>
+    <string name="error_no_connection">No internet connection. Please check your network.</string>
+    <string name="error_unknown">An unexpected error occurred. Please try again.</string>
+    <string name="error_request_timeout">The request took too long. Please try again.</string>
+    <string name="error_host_unreachable">Unable to reach the server. Please check your internet connection.</string>
+
+</resources>
