@@ -38,20 +38,24 @@ class BlogRepositoryImpl @Inject constructor(
         )
 
     override suspend fun createPost(blogParms: BlogEntity): Result<BlogEntity, DomainError> {
-        val titleBody = blogParms.title.toRequestBody("text/plain".toMediaTypeOrNull())
-        val contentBody = blogParms.content.toRequestBody("text/plain".toMediaTypeOrNull())
-        val photo = blogParms.photo.toMultipart()
-        return remoteDataSource.storeBlog(titleBody, contentBody, photo).fold(
+        val titleBody = blogParms.title?.toRequestBody("text/plain".toMediaTypeOrNull())
+        val contentBody = blogParms.content?.toRequestBody("text/plain".toMediaTypeOrNull())
+        val photo = blogParms.photo?.toMultipart()
+        if (titleBody ==null && contentBody==null && photo ==null ){
+            return Result.Error(DomainError.Network.UNKNOWN_ERROR)
+        }
+        return remoteDataSource.storeBlog(titleBody!!, contentBody!!, photo!!).fold(
             onFailure = { Result.Error(it.toDomainError()) },
             onSuccess = { Result.Success(it.toBlog()) },
         )
     }
 
-    override suspend fun updatePost(blogParms: BlogEntity): Result<BlogEntity, DomainError> {
-        val id = blogParms.id
-        val titleBody = blogParms.title.toRequestBody("text/plain".toMediaTypeOrNull())
-        val contentBody = blogParms.content.toRequestBody("text/plain".toMediaTypeOrNull())
-        val photo = blogParms.photo.toMultipart()
+    override suspend fun updatePost(blogParms: BlogEntity?): Result<BlogEntity, DomainError> {
+        val id = blogParms?.id
+        if (id == null) return Result.Error(DomainError.Network.UNKNOWN_ERROR)
+        val titleBody = blogParms.title?.toRequestBody("text/plain".toMediaTypeOrNull())
+        val contentBody = blogParms.content?.toRequestBody("text/plain".toMediaTypeOrNull())
+        val photo = blogParms.photo?.toMultipart()
 
         return remoteDataSource.updateBlog(id, titleBody, contentBody, photo).fold(
             onFailure = { Result.Error(it.toDomainError()) },

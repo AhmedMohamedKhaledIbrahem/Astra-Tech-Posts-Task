@@ -10,5 +10,5 @@ interface BlogRepository {
     suspend fun getPostById(id: Int): Result<BlogEntity, DomainError>
     suspend fun deletePostById(id: Int): Result<MessageEntity, DomainError>
     suspend fun createPost(blogParms: BlogEntity): Result<BlogEntity, DomainError>
-    suspend fun updatePost(blogParms: BlogEntity): Result<BlogEntity, DomainError>
+    suspend fun updatePost(blogParms: BlogEntity?): Result<BlogEntity, DomainError>
 }

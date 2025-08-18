@@ -33,9 +33,9 @@ interface BlogApiService {
     @POST("${BuildConfig.UPDATE_BLOG_ENDPOINT}/{id}")
     suspend fun updateBlog(
         @Path("id") id: Int,
-        @Part("title") title: RequestBody,
-        @Part("content") content: RequestBody,
-        @Part photo: MultipartBody.Part
+        @Part("title") title: RequestBody?,
+        @Part("content") content: RequestBody?,
+        @Part photo: MultipartBody.Part?
     ): Result<BlogDto, DataError>
 
     @POST("${BuildConfig.DELETE_BLOG_ENDPOINT}/{id}")
