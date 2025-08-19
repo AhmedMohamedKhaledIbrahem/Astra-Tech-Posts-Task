@@ -10,8 +10,9 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
+import javax.inject.Inject
 
-class NetworkAdapterFactory : CallAdapter.Factory() {
+class NetworkAdapterFactory @Inject constructor() : CallAdapter.Factory() {
     override fun get(
         returnType: Type,
         annotations: Array<out Annotation?>,

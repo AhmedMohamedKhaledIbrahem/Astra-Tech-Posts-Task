@@ -1,4 +1,4 @@
-package com.example.astratechpoststask.feature.post.data.source
+package com.example.astratechpoststask.feature.post.data.repository
 
 import com.example.astratechpoststask.core.error.DomainError
 import com.example.astratechpoststask.core.error.toDomainError
@@ -8,7 +8,10 @@ import com.example.astratechpoststask.core.utils.toMultipart
 import com.example.astratechpoststask.feature.post.data.mapper.toBlog
 import com.example.astratechpoststask.feature.post.data.mapper.toBlogList
 import com.example.astratechpoststask.feature.post.data.mapper.toMessage
+import com.example.astratechpoststask.feature.post.data.source.BlogApiService
+import com.example.astratechpoststask.feature.post.domain.entity.BlogCreateEntity
 import com.example.astratechpoststask.feature.post.domain.entity.BlogEntity
+import com.example.astratechpoststask.feature.post.domain.entity.BlogUpdateEntity
 import com.example.astratechpoststask.feature.post.domain.entity.MessageEntity
 import com.example.astratechpoststask.feature.post.domain.repository.BlogRepository
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -37,22 +40,18 @@ class BlogRepositoryImpl @Inject constructor(
             onSuccess = { Result.Success(it.toMessage()) }
         )
 
-    override suspend fun createPost(blogParms: BlogEntity): Result<BlogEntity, DomainError> {
-        val titleBody = blogParms.title?.toRequestBody("text/plain".toMediaTypeOrNull())
-        val contentBody = blogParms.content?.toRequestBody("text/plain".toMediaTypeOrNull())
-        val photo = blogParms.photo?.toMultipart()
-        if (titleBody ==null && contentBody==null && photo ==null ){
-            return Result.Error(DomainError.Network.UNKNOWN_ERROR)
-        }
-        return remoteDataSource.storeBlog(titleBody!!, contentBody!!, photo!!).fold(
+    override suspend fun createPost(blogParms: BlogCreateEntity): Result<BlogEntity, DomainError> {
+        val titleBody = blogParms.title.toRequestBody("text/plain".toMediaTypeOrNull())
+        val contentBody = blogParms.content.toRequestBody("text/plain".toMediaTypeOrNull())
+        val photo = blogParms.photo.toMultipart()
+        return remoteDataSource.storeBlog(titleBody, contentBody, photo).fold(
             onFailure = { Result.Error(it.toDomainError()) },
             onSuccess = { Result.Success(it.toBlog()) },
         )
     }
 
-    override suspend fun updatePost(blogParms: BlogEntity?): Result<BlogEntity, DomainError> {
-        val id = blogParms?.id
-        if (id == null) return Result.Error(DomainError.Network.UNKNOWN_ERROR)
+    override suspend fun updatePost(blogParms: BlogUpdateEntity): Result<BlogEntity, DomainError> {
+        val id = blogParms.id
         val titleBody = blogParms.title?.toRequestBody("text/plain".toMediaTypeOrNull())
         val contentBody = blogParms.content?.toRequestBody("text/plain".toMediaTypeOrNull())
         val photo = blogParms.photo?.toMultipart()

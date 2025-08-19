@@ -9,7 +9,6 @@ typealias CombinedEvents = UiEvent.CombinedEvents
 
 sealed interface UiEvent {
     sealed interface NavEvent : UiEvent{
-        data object SplashScreen : NavEvent
         data class BlogDetailsScreen(val id: Int): NavEvent
         data object HomeScreen: NavEvent
     }

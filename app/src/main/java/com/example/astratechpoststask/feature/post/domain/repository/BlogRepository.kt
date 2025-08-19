@@ -2,13 +2,15 @@ package com.example.astratechpoststask.feature.post.domain.repository
 
 import com.example.astratechpoststask.core.error.DomainError
 import com.example.astratechpoststask.core.utils.Result
+import com.example.astratechpoststask.feature.post.domain.entity.BlogCreateEntity
 import com.example.astratechpoststask.feature.post.domain.entity.BlogEntity
+import com.example.astratechpoststask.feature.post.domain.entity.BlogUpdateEntity
 import com.example.astratechpoststask.feature.post.domain.entity.MessageEntity
 
 interface BlogRepository {
     suspend fun getPosts(): Result<List<BlogEntity>, DomainError>
     suspend fun getPostById(id: Int): Result<BlogEntity, DomainError>
     suspend fun deletePostById(id: Int): Result<MessageEntity, DomainError>
-    suspend fun createPost(blogParms: BlogEntity): Result<BlogEntity, DomainError>
-    suspend fun updatePost(blogParms: BlogEntity?): Result<BlogEntity, DomainError>
+    suspend fun createPost(blogParms: BlogCreateEntity): Result<BlogEntity, DomainError>
+    suspend fun updatePost(blogParms: BlogUpdateEntity): Result<BlogEntity, DomainError>
 }

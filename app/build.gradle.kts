@@ -25,7 +25,7 @@ android {
             buildConfigField ("boolean", "DEBUG", "true")
             buildConfigField("String", "BASE_URL", "\"http://taskapi.astra-tech.net/api/\"")
             buildConfigField("String","ALL_BLOGS_ENDPOINT", "\"blogs\"")
-            buildConfigField("String","SHOE_BLOG_ENDPOINT", "\"blogs/shows/\"")
+            buildConfigField("String","SHOE_BLOG_ENDPOINT", "\"blogs/show\"")
             buildConfigField("String","STORE_BLOG_ENDPOINT", "\"blogs/store\"")
             buildConfigField("String","UPDATE_BLOG_ENDPOINT", "\"blogs/update\"")
             buildConfigField("String","DELETE_BLOG_ENDPOINT", "\"blogs/delete\"")
@@ -34,7 +34,7 @@ android {
             buildConfigField ("boolean", "RELEASE", "true")
             buildConfigField("String", "BASE_URL", "\"http://taskapi.astra-tech.net/api/\"")
             buildConfigField("String","ALL_BLOGS_ENDPOINT", "\"blogs\"")
-            buildConfigField("String","SHOE_BLOG_ENDPOINT", "\"blogs/shows/\"")
+            buildConfigField("String","SHOE_BLOG_ENDPOINT", "\"blogs/show\"")
             buildConfigField("String","STORE_BLOG_ENDPOINT", "\"blogs/store\"")
             buildConfigField("String","UPDATE_BLOG_ENDPOINT", "\"blogs/update\"")
             buildConfigField("String","DELETE_BLOG_ENDPOINT", "\"blogs/delete\"")
@@ -85,6 +85,7 @@ dependencies {
     debugImplementation(libs.chucker.debug)
     releaseImplementation(libs.chucker.relase)
 
+    implementation(libs.coil.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

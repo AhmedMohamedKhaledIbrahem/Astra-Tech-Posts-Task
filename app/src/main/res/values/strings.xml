@@ -13,5 +13,7 @@
     <string name="error_unknown">An unexpected error occurred. Please try again.</string>
     <string name="error_request_timeout">The request took too long. Please try again.</string>
     <string name="error_host_unreachable">Unable to reach the server. Please check your internet connection.</string>
+    <string name="successful_create_blog">Successful create blog</string>
+    <string name="success_update_blog">Successful Update Blog</string>
 
 </resources>
