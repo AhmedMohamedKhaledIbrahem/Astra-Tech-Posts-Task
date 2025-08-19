@@ -6,11 +6,12 @@ robust error handling with custom Retrofit networking patterns.
 
 ## Tech Stack / Dependencies
 
-- **Languages/Frameworks:** Kotlin, Jetpack Compose, AndroidX
+- **Languages/Frameworks:** Kotlin, Jetpack Compose
 - **Networking:** Retrofit, OkHttp, Gson, Chucker (debug logging)
-- **Dependency Injection:** Hilt
+- **Architecture**: Clean Architecture, MVVM, UDF (Unidirectional Data Flow)
+- **Dependency Injection:** Hilt Dagger
 - **Image Loading:** Coil
-- **Testing:** JUnit, Espresso, Compose UI Test
+- **Asynchronous:** Coroutines , Flow
 - **Other:** Material 3, Navigation Compose
 
 Dependencies are managed via Gradle with [version catalogs](./gradle/libs.versions.toml) and are
