@@ -17,6 +17,44 @@ robust error handling with custom Retrofit networking patterns.
 Dependencies are managed via Gradle with [version catalogs](./gradle/libs.versions.toml) and are
 declared in [`app/build.gradle.kts`](./app/build.gradle.kts).
 
+## API Keys
+
+All API
+endpoints are public and configured via `BuildConfig` in your gradle file:
+
+- `BASE_URL`: http://taskapi.astra-tech.net/api/
+
+### Available Endpoints
+
+| Method | Endpoint     | Description            |
+|--------|--------------|------------------------|
+| GET    | blogs        | Get all blog posts     |
+| GET    | blogs/show   | Get blog post by ID    |
+| POST   | blogs/store  | Create a new blog post |
+| POST   | blogs/update | Update a blog post     |
+| DELETE | blogs/delete | Delete a blog post     |
+
+
+## Environment Setup
+
+- **Compile SDK**: 36+
+- **Min SDK**: 29
+- **Target SDK**: 36
+- **Kotlin**: 2.0.21+
+- **JDK Version**: 11 (see `compileOptions` in `app/build.gradle.kts`)
+- **Gradle Wrapper Version**: 8.13 (see [
+  `gradle-wrapper.properties`](./gradle/wrapper/gradle-wrapper.properties))
+
+Ensure these are installed/configured before building. Dependencies are resolved via Gradle version
+catalogs.
+
+## Build Notes
+
+- Uses Gradle wrapper (`gradlew`) version **8.13**, compatible with Android Gradle Plugin 8.11.1+
+- JDK **11** required
+- If issues occur with older versions of Android Studio, Gradle, or JDK, please upgrade to the
+  latest.
+
 ## Why three patterns in Retrofit? (Delegation, Adapter, Factory)
 
 To ensure robust and maintainable networking, the project customizes Retrofit with three related
